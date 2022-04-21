@@ -9,11 +9,12 @@ html {
 }
 
 
-
+/* 250ms cubic-bezier(0.4, 0, 0.2, 1) */
 
 :root {
     --main-text-color: #757575;
     --second-text-color: #212121;
+    --third-text-color: #ffffff;
     --footer-text-color: #ffffff;
     --footer-bg-color: #2F303A;
     --accent-color: #2196F3;
@@ -31,6 +32,8 @@ html {
     --social-icon-hover-color : #ffffff;
     --clients-icon-color: #AFB1B8;
     --footer-icon-bg-color: rgba(255, 255, 255, 0.1);
+    --work-text-bgc: rgba(47, 48, 58, 0.8);
+    --project-popup-bgc: rgba(33, 150, 243, 0.9);
     }
 
 /* globall styles */
@@ -127,6 +130,7 @@ header {
 }
 
 .link {
+    position: relative;
     display: block;
     padding-top: 32px;
     padding-bottom: 32px;
@@ -135,10 +139,42 @@ header {
     line-height: 1.14;
     letter-spacing: 0.02em;
     color: var(--second-text-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+
+    background-color: var(--accent-color);
+    opacity: 0;
+
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .current {
     color: var(--accent-color);
+}
+
+.current::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+
+    background-color: var(--accent-color);
+    opacity: 1;
 }
 
 .contact-list {
@@ -160,6 +196,8 @@ header {
     font-weight: 500;
     line-height: 1.14;
     letter-spacing: 0.02em;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mail-icon {
@@ -183,6 +221,11 @@ header {
 .contact:hover,
 .contact:focus {
     color: var(--accent-color);
+}
+
+.link:hover::after,
+.link:focus::after{
+    opacity: 1;
 }
 
 /* footer */
@@ -224,6 +267,7 @@ footer {
     color: var(--footer-text-color);
     font-weight: 400;
     line-height: 1.71;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address-contact {
@@ -271,6 +315,7 @@ address {
     padding: 12px;
     color: inherit;
     background-color: var(--footer-icon-bg-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social:hover,
@@ -327,6 +372,7 @@ address {
     line-height: 1.9;
     letter-spacing: 0.06em;
     background-color: var(--accent-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover,
@@ -396,6 +442,10 @@ address {
     display: flex;
 }
 
+.work-list > .item {
+    position: relative;
+}
+
 .work-list > .item + .item {
     margin-left: 30px;
 }
@@ -404,6 +454,24 @@ address {
     display: block;
     width: 370px;
     height: 270px;
+}
+
+.work-text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+
+    width: 100%;
+    margin: 0;
+    padding: 27px 0;
+
+    font-weight: 700;
+    line-height: 1.14;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--third-text-color);
+    background-color: var(--work-text-bgc);
 }
 
 /* команда */
@@ -480,6 +548,9 @@ address {
     border-radius: 50%;
     padding: 12px;
     color: var(--social-icon-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social:hover,
@@ -493,7 +564,6 @@ address {
     height: 20px;
     fill: currentColor;
 }
-
 
 
 /* clients */
@@ -525,6 +595,8 @@ address {
     border-radius: 4px;
     border: 1px solid var(--clients-icon-color);
     color: var(--clients-icon-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-icon {
@@ -571,6 +643,10 @@ address {
     font-size: 16px;
     line-height: 1.62;
     text-align: center;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
@@ -587,6 +663,7 @@ address {
 
 .project-list > .item {
     margin-bottom: 30px;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-list > .item + .item {
@@ -610,6 +687,30 @@ address {
     display: block;
     width: 370px;
     height: 294px;
+}
+
+.project-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+
+    padding: 63px 24px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--third-text-color);
+    background-color: var(--project-popup-bgc);
+    transform: translatey(370px);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-list > .item:hover .project-overlay {
+    transform: translateY(0);
 }
 
 .project-itm-box {
